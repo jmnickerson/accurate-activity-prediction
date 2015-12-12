@@ -47,18 +47,12 @@
 <a href="https://youtu.be/EvIqcDkBsAM">Video</a></p>
 
 <h3>
-<a id="quick-facts" class="anchor" href="#quick-facts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Facts</h3>
-
-<ul>
-<li>~12000 data points</li>
-<li>8 Hidden Layer Neural Network</li>
-</ul>
-
-<h3>
 <a id="how" class="anchor" href="#how" aria-hidden="true"><span class="octicon octicon-link"></span></a>How</h3>
 <p>The data from the <a href="http://casas.wsu.edu/">CASAS</a> project looks like this:
 </p>
-<pre><code>2009-11-01 18:16:30.019905	M003	ON
+<pre><code>
+Date	   Time			Sensor	Value	Activity
+2009-11-01 18:16:30.019905	M003	ON
 2009-11-01 18:16:30.030466	M015	ON
 2009-11-01 18:16:31.053482	M014	ON	Eating begin
 2009-11-01 18:16:34.087702	M015	OFF
@@ -73,7 +67,11 @@
 
 </p>
 <center>
-<img src=totalerror.png alt="Total Error">
+<figure>
+	<img src=totalerror.png alt="Total Error">
+	<figcaption>This graph shows how the error decreased as the neural network is trained.</figcaption>
+</figure>
+
 </center>
       </section>
       <footer>
