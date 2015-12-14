@@ -34,21 +34,26 @@
 <a id="what" class="anchor" href="#what" aria-hidden="true"><span class="octicon octicon-link"></span></a>What</h3>
 
 <p>Using data from the <a href="http://casas.wsu.edu/">CASAS</a> Project and machine learning techniques, this project accurately predicts what activity a person is engaged in based on sensor data.  The machine learning was done using <a href="http://pybrain.org/">PyBrain</a>  with a feed-forward neural network.</p>
-<center>
-<figure>
-	<img src=floorplan.png alt="Floor Plan" width="300" height = "300">
-	<figcaption>An example floorplan from the CASAS project.</figcaption>
-</figure>
-</center>
+
 <h3>
 <a id="why" class="anchor" href="#why" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why</h3>
 
 <p>There are many exciting opportunities if a resident's activity can be accurately predicted.  One such application is predicting power usage.  This could allow for cost savings and power consumption reduction.
-<a href="https://youtu.be/EvIqcDkBsAM">Video</a></p>
+<!--<a href="https://youtu.be/EvIqcDkBsAM">Video</a></p> -->
 
 <h3>
 <a id="how" class="anchor" href="#how" aria-hidden="true"><span class="octicon octicon-link"></span></a>How</h3>
-<p>The data from the <a href="http://casas.wsu.edu/">CASAS</a> project looks like this:
+<h4>
+<a id="Input" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input</h4>
+The data for this project was gathered using a smart apartment (see Figure 1).  The small boxes indicate a sensor.  The ones that begin with "M" are motion sensors.  This apartment has 31 motion sensors.
+<center>
+<figure>
+	<img src=floorplan.png alt="Floor Plan" width="300" height = "300">
+	<figcaption>Figure 1: The floorplan of the test suite.</figcaption>
+</figure>
+</center>
+
+<p>The sensors gathered data of real residents over the course of 39 days.  The format of the data is shown below.
 </p>
 <pre><code>
 Date	   Time			Sensor	Value	Activity
@@ -61,8 +66,16 @@ Date	   Time			Sensor	Value	Activity
 2009-11-01 18:16:45.071472	M003	ON
 2009-11-01 18:16:46.025461	M014	ON
 </code></pre>
-<p>First the data is parsed to extract of which sensors were triggered during a specific activity.  This data is written to a file as two boolean arrays, one for the sensors and one for the activities.
+<p>The data is parsed to extract of which sensors were triggered during a specific activity.  There are 16 unique activities indentified in this file (see Table 1).  This data is written to a file as two boolean arrays, one for the sensors and one for the activities (see example below).
 </p>
+<pre><code>
+Input (Sensors)
+0 0 1 1 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Output (Activity)
+0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 
+</code></pre>
+
+
 <p>The array of triggered sensors is the input to the neural network and the array of activities is the output.  The network was then trained over 10000 iterations with %80 of the data.
 
 </p>
