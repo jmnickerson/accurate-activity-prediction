@@ -53,7 +53,7 @@ The data for this project was gathered using a smart apartment (see Figure 1).  
 </figure>
 </center>
 
-<p>The sensors gathered data of real residents over the course of 39 days.  The format of the data is shown below.
+<p>The sensors gathered data of real residents over the course of 152 days.  The format of the data is shown below.
 </p>
 <pre><code>
 Date	   Time			Sensor	Value	Activity
@@ -74,7 +74,8 @@ Input (Sensors)
 Output (Activity)
 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 
 </code></pre>
-
+<h4>
+<a id="NeuralNetwork" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Neural Network</h4>
 
 <p>The array of triggered sensors is the input to the neural network and the array of activities is the output.  The network was then trained over 10000 iterations with %80 of the data.
 
@@ -84,6 +85,9 @@ Output (Activity)
 	<img src=totalerror.png alt="Total Error">
 	<figcaption>This graph shows how the error decreased as the neural network is trained.</figcaption>
 </figure>
+</center>
+<h4>
+<a id="Results" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h4>
 
 </center>
       </section>
@@ -93,6 +97,6 @@ Output (Activity)
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+
   </body>
 </html>
