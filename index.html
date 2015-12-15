@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Accurate-home-power-prediction</title>
+    <title>Accurate Activity Prediction</title>
   </head>
 
   <body>
@@ -18,7 +18,7 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/jmnickerson/accurate-activity-prediction">View on GitHub</a>
 
-          <h1 id="project_title">Accurate-home-power-prediction</h1>
+          <h1 id="project_title">Accurate Activity Prediction</h1>
           <h2 id="project_tagline"></h2>
 
             <section id="downloads">
@@ -49,10 +49,10 @@
 <a id="how" class="anchor" href="#how" aria-hidden="true"><span class="octicon octicon-link"></span></a>How</h3>
 <h4>
 <a id="Dataset" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dataset</h4>
-<a href="http://casas.wsu.edu/">The CASAS Project</a> conducts research using several different smart apartments outfitted with a variety of sensors.  Then real people live the apartment for an extended period of time. Figure 1 shows the layout of the apartment for the <a href = "http://casas.wsu.edu/datasets/tulum2.zip">data</a> used in this project.  The small boxes indicate a sensor.  The ones that begin with "M" are motion sensors.  This apartment has 31 motion sensors.  
+<a href="http://casas.wsu.edu/">The CASAS Project</a> conducts research using several different smart apartments outfitted with a variety of sensors.  Then, real people live the apartment for an extended period of time. Figure 1 shows the layout of the apartment for the <a href = "http://casas.wsu.edu/datasets/tulum2.zip">data</a> used in this project.  The small boxes indicate a sensor.  The ones that begin with "M" are motion sensors.  This apartment has 31 motion sensors.  
 <center>
 <figure>
-	<img src=floorplan.png alt="Floor Plan" width="300" height = "300">
+	<img src=floorplan.png alt="Floor Plan">
 	<figcaption>Figure 1: The floorplan of the test suite.</figcaption>
 </figure>
 </center>
@@ -74,6 +74,13 @@ Date	   Time			Sensor	Value	Activity
 </code></pre>
 <p>The data is parsed to extract which sensors were triggered during a specific activity.  There are 16 unique activities indentified in this file (see Table 1).  This data is written to a file as two boolean arrays, one for the sensors and one for the activities (see example below).  These arrays are the input to the neural network.
 </p>
+
+<center>
+<figure>
+	<img src=activitytable.png alt="Floor Plan">
+	<figcaption>Table 1: Activities recorded in dataset.</figcaption>
+</figure>
+</center>
 <h4>
 <a id="Data Formatted for Neural Network" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Formatted for Neural Network</h4>
 
@@ -86,7 +93,7 @@ Output (Activity)
 <h4>
 <a id="NeuralNetwork" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building and Training the Neural Network</h4>
 
-<p>The neural network was build using <bold>8 hidden layers.</bold>  The array of triggered sensors is the input to the neural network and the array of activities is the output.  The network was then trained over 10000 iterations with %80 of the data(See Figure 2).  The network was trained using backpropigation.
+<p>The neural network was built using <bold>8 hidden layers.</bold>  The array of triggered sensors is the input to the neural network and the array of activities is the output.  The network was then trained over 10000 iterations with %80 of the data (See Figure 2).  The network was trained using backpropagation.
 
 </p>
 <center>
@@ -100,12 +107,10 @@ Output (Activity)
 <p>After training, the neural network was tested with the other %20 of the dataset.  Sample output from the neural network is shown below. </p>
 
 <pre><code>
-('out:    ', '[0.007 , -0.006, -0.003, -0.001, 0.018 , 
-0.024 , -0.005, 0.042 , -0.037, 0.106 , 0.022 , 0.067 , 
-0.011 , -0.001, 0.789 , -0.031]')
-('correct:', '[0     , 0     , 0     , 0     , 0     , 
-0     , 0     , 0     , 0     , 0     , 0     , 0     ,
- 0     , 0     , 1     , 0     ]')
+('out:    ', '[0.007 , -0.006, -0.003, -0.001, 0.018 , 0.024 , -0.005
+, 0.042 , -0.037, 0.106 , 0.022 , 0.067 , 0.011 , -0.001, 0.789 , -0.031]')
+('correct:', '[0     , 0     , 0     , 0     , 0     , 0     , 0     
+, 0     , 0     , 0     , 0     , 0     , 0     , 0     , 1     , 0     ]')
 error:  0.03291553
 </code></pre>
 
@@ -117,20 +122,15 @@ error:  0.03291553
 
 <center>
 <figure>
-	<img src=confusionmatrixonly.png alt="Total Error">
+	<img src=confusionmatrixv2.png alt="Total Error">
 	<figcaption>Figure 3: Confusion matrix for the neural network (see Table 2).</figcaption>
 </figure>
 </center>
-<center>
-<figure>
-	<img src=confusionmatixtableonly.png alt="Total Error">
-	<figcaption>Table 2: Integers corrosponding to activities in the confusion matrix.</figcaption>
-</figure>
-</center>
+
 <h3>
 <a id="Acknowledgements" class="anchor" href="#how" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgements</h3>
     
-<p> I would like to thank to The CASAS Project at Washington State University for the publically available datasets.  I also appreciate the countless community contributors of PyBrain.  I would also like to thank Dr. Nickolas Flann for his guidance and help.
+<p> I would like to thank to <a href="http://casas.wsu.edu/">The CASAS Project</a> at Washington State University for the publically available datasets.  I also appreciate the countless community contributors of <a href="http://pybrain.org/">PyBrain</a>.  I would also like to thank Dr. Nickolas Flann of Utah State University for his guidance and help.
 </p>
 </div>
     <!-- FOOTER  -->
