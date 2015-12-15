@@ -44,8 +44,8 @@
 <h3>
 <a id="how" class="anchor" href="#how" aria-hidden="true"><span class="octicon octicon-link"></span></a>How</h3>
 <h4>
-<a id="Input" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input</h4>
-The data for this project were gathered using a smart apartment (see Figure 1).  The small boxes indicate a sensor.  The ones that begin with "M" are motion sensors.  This apartment has 31 motion sensors.
+<a id="Dataset" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dataset</h4>
+<a href="http://casas.wsu.edu/">The CASAS Project</a> conducts research using several different smart apartments outfitted with a variety of sensors.  Then real people live the apartment for an extended period of time. Figure 1 shows the layout of the apartment for the <a href = "http://casas.wsu.edu/datasets/tulum2.zip">data</a> used in this project.  The small boxes indicate a sensor.  The ones that begin with "M" are motion sensors.  This apartment has 31 motion sensors.  
 <center>
 <figure>
 	<img src=floorplan.png alt="Floor Plan" width="300" height = "300">
@@ -53,8 +53,10 @@ The data for this project were gathered using a smart apartment (see Figure 1). 
 </figure>
 </center>
 
-<p>The sensors gathered data of real residents over the course of 152 days.  The format of the data is shown below.
+<p>The data was gathered over 152 days and 12637 activities were recorded.  The format of the data is shown below.
 </p>
+<h4>
+<a id="Raw Data" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Raw Data</h4>
 <pre><code>
 Date	   Time			Sensor	Value	Activity
 2009-11-01 18:16:30.019905	M003	ON
@@ -66,9 +68,10 @@ Date	   Time			Sensor	Value	Activity
 2009-11-01 18:16:45.071472	M003	ON
 2009-11-01 18:16:46.025461	M014	ON
 </code></pre>
-<p>The data is parsed to extract which sensors were triggered during a specific activity.  There are 16 unique activities indentified in this file (see Table 1).  This data is written to a file as two boolean arrays, one for the sensors and one for the activities (see example below).
+<p>The data is parsed to extract which sensors were triggered during a specific activity.  There are 16 unique activities indentified in this file (see Table 1).  This data is written to a file as two boolean arrays, one for the sensors and one for the activities (see example below).  These arrays are the input to the neural network.
 </p>
-
+<h4>
+<a id="Data Formatted for Neural Network" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Formatted for Neural Network</h4>
 
 <pre><code>
 Input (Sensors)
@@ -77,19 +80,43 @@ Output (Activity)
 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 
 </code></pre>
 <h4>
-<a id="NeuralNetwork" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Neural Network</h4>
+<a id="NeuralNetwork" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building and Training the Neural Network</h4>
 
-<p>The array of triggered sensors is the input to the neural network and the array of activities is the output.  The network was then trained over 10000 iterations with %80 of the data.
+<p>The neural network was build using <bold>8 hidden layers.</bold>  The array of triggered sensors is the input to the neural network and the array of activities is the output.  The network was then trained over 10000 iterations with %80 of the data(See Figure 2).  The network was trained using backpropigation.
 
 </p>
 <center>
 <figure>
 	<img src=totalerror.png alt="Total Error">
-	<figcaption>This graph shows how the error decreased as the neural network is trained.</figcaption>
+	<figcaption>Figure 2: This graph shows how the error decreased as the neural network is trained.</figcaption>
 </figure>
 </center>
 <h4>
 <a id="Results" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h4>
+<p>After training, the neural network was tested with the other %20 of the dataset.  Sample output from the neural network is shown below. </p>
+
+<pre><code>
+('out:    ', '[0.007 , -0.006, -0.003, -0.001, 0.018 , 
+0.024 , -0.005, 0.042 , -0.037, 0.106 , 0.022 , 0.067 , 
+0.011 , -0.001, 0.789 , -0.031]')
+('correct:', '[0     , 0     , 0     , 0     , 0     , 
+0     , 0     , 0     , 0     , 0     , 0     , 0     ,
+ 0     , 0     , 1     , 0     ]')
+error:  0.03291553
+</code></pre>
+
+<p>The first line is the prediction of the neural network, the second line is the correct output.  To evaluate the neural network, I took the largest value from its output and compared it with the correct response.  The neural network correctly predicted the activity <bold>%52.35<bold> of the time.  I also evaluated the output by checking to see if the correct output was one of the top two predicted by the neural network.  The neural network correctly narrowed it down to 2 of the 16 activities %100 of the time.
+</p>
+
+<p>To visualize where the neural network was picking the wrong response, I created a confusion matrix (see Figure 3)
+</p>
+
+<center>
+<figure>
+	<img src=confusionmatrix.png alt="Total Error">
+	<figcaption>Figure 3: Confusion matrix for the neural network.</figcaption>
+</figure>
+</center>
 
 </center>
       </section>
