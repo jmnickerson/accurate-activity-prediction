@@ -93,7 +93,7 @@ Output (Activity)
 <h4>
 <a id="NeuralNetwork" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building and Training the Neural Network</h4>
 
-<p>The neural network was built using <strong>8 hidden layers.</strong>  The array of triggered sensors is the input to the neural network and the array of activities is the output.  The network was then trained over 10000 iterations with %80 of the data (See Figure 2).  The network was trained using backpropagation.
+<p>The neural network was built using <strong>8 hidden layers.</strong>  The array of triggered sensors is the input to the neural network and the array of activities is the output.  The network was then trained over 10000 iterations with 80% of the data (See Figure 2).  The network was trained using backpropagation.
 
 </p>
 <center>
@@ -104,7 +104,7 @@ Output (Activity)
 </center>
 <h4>
 <a id="Results" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h4>
-<p>After training, the neural network was tested with the other %20 of the dataset.  Sample output from the neural network is shown below. </p>
+<p>After training, the neural network was tested with the other 20% of the dataset.  Sample output from the neural network is shown below. </p>
 
 <pre><code>
 ('out:    ', '[0.007 , -0.006, -0.003, -0.001, 0.018 , 0.024 , -0.005
@@ -114,7 +114,7 @@ Output (Activity)
 error:  0.03291553
 </code></pre>
 
-<p>The first line is the prediction of the neural network, the second line is the correct output.  To evaluate the neural network, I took the largest value from its output and compared it with the correct response.  The neural network correctly predicted the activity <strong>%52.35</strong> of the time.  I also evaluated the output by checking to see if the correct output was one of the top two predicted by the neural network.  The neural network correctly narrowed it down to 2 of the 16 activities %100 of the time.
+<p>The first line is the prediction of the neural network, the second line is the correct output.  To evaluate the neural network, I took the largest value from its output and compared it with the correct response.  The neural network correctly predicted the activity <strong>52.35%</strong> of the time.  I also evaluated the output by checking to see if the correct output was one of the top two predicted by the neural network.  The neural network correctly narrowed it down to 2 of the 16 activities 100% of the time.
 </p>
 
 <p>To visualize where the neural network was picking the wrong response, I created a confusion matrix (see Figure 3)
